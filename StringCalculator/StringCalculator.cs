@@ -40,6 +40,7 @@ namespace StringCalculator
 		private static List<char> FindDelimiters(int startIndex, string input)
 		{
 			List<char> delimiters = new List<char>();
+
 			if (startIndex == 0)
 			{
 				delimiters.Add(',');
@@ -66,8 +67,21 @@ namespace StringCalculator
 			string cuted = input.Substring(startIndex);
 			string[] numbersStrings = cuted.Split(delimiters.ToArray());
 			int[] numbers = Array.ConvertAll(numbersStrings, int.Parse);
+			CheckNegative(numbers);
 
 			return numbers;
+		}
+
+		private static void CheckNegative(int[] numbers)
+		{
+			string exceptionNumbers = "";
+
+			foreach (int number in numbers)
+				if (number < 0)
+					exceptionNumbers += string.Format("{0} ", number);
+
+			if (exceptionNumbers.Length != 0)
+				throw new ArgumentException(exceptionNumbers);
 		}
 	}
 }
