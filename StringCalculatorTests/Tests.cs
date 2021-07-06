@@ -33,5 +33,16 @@ namespace StringCalculator
 
 			Assert.AreEqual(expected, actual);
 		}
+
+		[Test]
+		public void AddTest_TwoNumbers_SumNumbers()
+		{
+			int expected = 3;
+			string input = "1,2";
+
+			int actual = stringCalculator.Add(input);
+
+			Assert.AreEqual(expected, actual);
+		}
 	}
 }
