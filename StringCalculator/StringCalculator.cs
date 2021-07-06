@@ -10,12 +10,20 @@ namespace StringCalculator
 	{
 		public int Add(string input)
 		{
+			int sum = 0;
+
 			if (input.Length == 0)
 			{
-				return 0;
+				return sum;
 			}
 
-			return Convert.ToInt32(input);
+			string[] numbers = input.Split(',').ToArray();
+			foreach  (string number in numbers)
+			{
+				sum += Convert.ToInt32(number);
+			}
+
+			return sum;
 		}
 	}
 }
