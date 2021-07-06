@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace StringCalculator
 {
-    public class StringCalculator
-    {
-    }
+	public class StringCalculator
+	{
+		public int Add(string input)
+		{
+			return 0;
+		}
+	}
 }

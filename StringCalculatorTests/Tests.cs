@@ -18,8 +18,6 @@ namespace StringCalculator
 			int actual = stringCalculator.Add("");
 
 			Assert.AreEqual(expected, actual);
-
-
 		}
 	}
 }
