@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace StringCalculator
 {
@@ -12,7 +8,7 @@ namespace StringCalculator
 	{
 		public int Add(string input)
 		{
-			if (input.Length == 0)	// Increase performance for empty string
+			if (input.Length == 0)  // Increase performance for empty string
 				return 0;
 
 			int[] numbers = ExtractNumbers(input);
