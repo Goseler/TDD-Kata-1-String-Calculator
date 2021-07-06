@@ -109,7 +109,6 @@ namespace StringCalculator
 			int actual = stringCalculator.Add(input);
 
 			Assert.AreEqual(expected, actual);
-			//string[] actual = Regex.Split(input, @"\D").Where(str => !string.IsNullOrEmpty(str)).ToArray();
 		}
 	}
 }

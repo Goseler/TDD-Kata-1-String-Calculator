@@ -12,20 +12,8 @@ namespace StringCalculator
 	{
 		public int Add(string input)
 		{
-			if (input.Length == 0)
+			if (input.Length == 0)	// Increase performance for empty string
 				return 0;
-
-			//int startIndex = GetStartIndex(input);
-			//List<string> delimiters = GetDelimiters(startIndex, input);
-			//int[] numbers = GetNumbers(input, startIndex, delimiters);
-			//int sum = Sum(numbers);
-
-			//string[] numbersStrings = Regex.Split(input, @"\D")
-			//						  .Where(str => !string.IsNullOrEmpty(str))
-			//						  .ToArray();
-
-			//var numbersStrings = Regex.Matches(input, @"-?\d+");
-			//int[] numbers = Array.ConvertAll(numbersStrings, int.Parse);
 
 			int[] numbers = ExtractNumbers(input);
 			int sum = Sum(numbers);
@@ -37,6 +25,7 @@ namespace StringCalculator
 			List<int> numbersList = new List<int>();
 
 			var numbersStrings = Regex.Matches(input, @"-?\d+");
+
 			foreach (var item in numbersStrings)
 			{
 				numbersList.Add(Convert.ToInt32(item.ToString()));
@@ -48,35 +37,6 @@ namespace StringCalculator
 			return numbers;
 		}
 
-		//private static int GetStartIndex(string input)
-		//{
-		//	int startIndex = 0;
-
-		//	if (input[0] == '/' && input[1] == '/')
-		//	{
-		//		if (input[4] == '\n')
-		//			startIndex = 4;
-		//		startIndex = 3;
-		//	}
-
-		//	return startIndex;
-		//}
-
-		//private static List<string> GetDelimiters(int startIndex, string input)
-		//{
-		//	List<string> delimiters = new List<string>();
-
-		//	if (startIndex == 0)
-		//	{
-		//		delimiters.Add(",");
-		//		delimiters.Add("\n");
-		//	}
-		//	else
-		//		delimiters.Add(input[2].ToString());
-
-		//	return delimiters;
-		//}
-
 		private static int Sum(int[] numbers)
 		{
 			int sum = 0;
@@ -87,17 +47,6 @@ namespace StringCalculator
 
 			return sum;
 		}
-
-		//private static int[] GetNumbers(string input, int startIndex, List<string> delimiters)
-		//{
-		//	string cuted = input.Substring(startIndex);
-		//	string[] numbersStrings = cuted.Split(delimiters.ToArray(), StringSplitOptions.None);
-		//	//string[] numbersStrings = Regex.Split(input, @"-?\d+");
-		//	int[] numbers = Array.ConvertAll(numbersStrings, int.Parse);
-		//	CheckNegative(numbers);
-
-		//	return numbers;
-		//}
 
 		private static void CheckNegative(int[] numbers)
 		{
