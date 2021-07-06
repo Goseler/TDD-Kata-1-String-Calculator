@@ -121,5 +121,16 @@ namespace StringCalculator
 
 			Assert.AreEqual(expected, actual);
 		}
+
+		[Test]
+		public void AddTest_MultipleDelimitersOfAnyLength_SumNumbers()
+		{
+			int expected = 6;
+			string input = "//[***][%%]\n1***2%%3";
+
+			int actual = stringCalculator.Add(input);
+
+			Assert.AreEqual(expected, actual);
+		}
 	}
 }
