@@ -1,5 +1,7 @@
 using NUnit.Framework;
 using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace StringCalculator
 {
@@ -96,6 +98,18 @@ namespace StringCalculator
 			int actual = stringCalculator.Add(input);
 
 			Assert.AreEqual(expected, actual);
+		}
+
+		[Test]
+		public void AddTest_DelimitersOfAnyLength_SumNumbers()
+		{
+			int expected = 6;
+			string input = "//***\n1***2***3";
+
+			int actual = stringCalculator.Add(input);
+
+			Assert.AreEqual(expected, actual);
+			//string[] actual = Regex.Split(input, @"\D").Where(str => !string.IsNullOrEmpty(str)).ToArray();
 		}
 	}
 }

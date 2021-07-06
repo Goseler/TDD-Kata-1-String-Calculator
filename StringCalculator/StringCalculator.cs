@@ -15,42 +15,67 @@ namespace StringCalculator
 			if (input.Length == 0)
 				return 0;
 
-			int startIndex = FindStartIndex(input);
-			List<char> delimiters = FindDelimiters(startIndex, input);
-			int[] numbers = GetNumbers(input, startIndex, delimiters);
-			int sum = Sum(numbers);
+			//int startIndex = GetStartIndex(input);
+			//List<string> delimiters = GetDelimiters(startIndex, input);
+			//int[] numbers = GetNumbers(input, startIndex, delimiters);
+			//int sum = Sum(numbers);
 
+			//string[] numbersStrings = Regex.Split(input, @"\D")
+			//						  .Where(str => !string.IsNullOrEmpty(str))
+			//						  .ToArray();
+
+			//var numbersStrings = Regex.Matches(input, @"-?\d+");
+			//int[] numbers = Array.ConvertAll(numbersStrings, int.Parse);
+
+			int[] numbers = ExtractNumbers(input);
+			int sum = Sum(numbers);
 			return sum;
 		}
 
-		private static int FindStartIndex(string input)
+		private static int[] ExtractNumbers(string input)
 		{
-			int startIndex = 0;
+			List<int> numbersList = new List<int>();
 
-			if (input[0] == '/' && input[1] == '/')
+			var numbersStrings = Regex.Matches(input, @"-?\d+");
+			foreach (var item in numbersStrings)
 			{
-				if (input[4] == '\n')
-					startIndex = 4;
-				startIndex = 3;
+				numbersList.Add(Convert.ToInt32(item.ToString()));
 			}
+			int[] numbers = numbersList.ToArray();
 
-			return startIndex;
+			CheckNegative(numbers);
+
+			return numbers;
 		}
 
-		private static List<char> FindDelimiters(int startIndex, string input)
-		{
-			List<char> delimiters = new List<char>();
+		//private static int GetStartIndex(string input)
+		//{
+		//	int startIndex = 0;
 
-			if (startIndex == 0)
-			{
-				delimiters.Add(',');
-				delimiters.Add('\n');
-			}
-			else
-				delimiters.Add(input[2]);
+		//	if (input[0] == '/' && input[1] == '/')
+		//	{
+		//		if (input[4] == '\n')
+		//			startIndex = 4;
+		//		startIndex = 3;
+		//	}
 
-			return delimiters;
-		}
+		//	return startIndex;
+		//}
+
+		//private static List<string> GetDelimiters(int startIndex, string input)
+		//{
+		//	List<string> delimiters = new List<string>();
+
+		//	if (startIndex == 0)
+		//	{
+		//		delimiters.Add(",");
+		//		delimiters.Add("\n");
+		//	}
+		//	else
+		//		delimiters.Add(input[2].ToString());
+
+		//	return delimiters;
+		//}
 
 		private static int Sum(int[] numbers)
 		{
@@ -63,15 +88,16 @@ namespace StringCalculator
 			return sum;
 		}
 
-		private static int[] GetNumbers(string input, int startIndex, List<char> delimiters)
-		{
-			string cuted = input.Substring(startIndex);
-			string[] numbersStrings = cuted.Split(delimiters.ToArray());
-			int[] numbers = Array.ConvertAll(numbersStrings, int.Parse);
-			CheckNegative(numbers);
+		//private static int[] GetNumbers(string input, int startIndex, List<string> delimiters)
+		//{
+		//	string cuted = input.Substring(startIndex);
+		//	string[] numbersStrings = cuted.Split(delimiters.ToArray(), StringSplitOptions.None);
+		//	//string[] numbersStrings = Regex.Split(input, @"-?\d+");
+		//	int[] numbers = Array.ConvertAll(numbersStrings, int.Parse);
+		//	CheckNegative(numbers);
 
-			return numbers;
-		}
+		//	return numbers;
+		//}
 
 		private static void CheckNegative(int[] numbers)
 		{
