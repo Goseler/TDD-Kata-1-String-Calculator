@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace StringCalculator
@@ -10,20 +12,62 @@ namespace StringCalculator
 	{
 		public int Add(string input)
 		{
-			int sum = 0;
-
 			if (input.Length == 0)
-			{
-				return sum;
-			}
+				return 0;
 
-			string[] numbers = input.Split(',', '\n').ToArray();
-			foreach  (string number in numbers)
-			{
-				sum += Convert.ToInt32(number);
-			}
+			int startIndex = FindStartIndex(input);
+			List<char> delimiters = FindDelimiters(startIndex, input);
+			int[] numbers = GetNumbers(input, startIndex, delimiters);
+			int sum = Sum(numbers);
 
 			return sum;
+		}
+
+		private static int FindStartIndex(string input)
+		{
+			int startIndex = 0;
+
+			if (input[0] == '/' && input[1] == '/')
+			{
+				if (input[4] == '\n')
+					startIndex = 4;
+				startIndex = 3;
+			}
+
+			return startIndex;
+		}
+
+		private static List<char> FindDelimiters(int startIndex, string input)
+		{
+			List<char> delimiters = new List<char>();
+			if (startIndex == 0)
+			{
+				delimiters.Add(',');
+				delimiters.Add('\n');
+			}
+			else
+				delimiters.Add(input[2]);
+
+			return delimiters;
+		}
+
+		private static int Sum(int[] numbers)
+		{
+			int sum = 0;
+
+			foreach (int number in numbers)
+				sum += number;
+
+			return sum;
+		}
+
+		private static int[] GetNumbers(string input, int startIndex, List<char> delimiters)
+		{
+			string cuted = input.Substring(startIndex);
+			string[] numbersStrings = cuted.Split(delimiters.ToArray());
+			int[] numbers = Array.ConvertAll(numbersStrings, int.Parse);
+
+			return numbers;
 		}
 	}
 }
