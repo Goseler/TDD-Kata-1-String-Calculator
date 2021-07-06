@@ -44,5 +44,16 @@ namespace StringCalculator
 
 			Assert.AreEqual(expected, actual);
 		}
+
+		[Test]
+		public void AddTest_UnknownAmountOfNumbers_SumNumbers()
+		{
+			int expected = 10;
+			string input = "1,2,3,4";
+
+			int actual = stringCalculator.Add(input);
+
+			Assert.AreEqual(expected, actual);
+		}
 	}
 }
