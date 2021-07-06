@@ -13,22 +13,28 @@ namespace StringCalculator
 
 			int[] numbers = ExtractNumbers(input);
 			int sum = Sum(numbers);
+
 			return sum;
 		}
 
 		private static int[] ExtractNumbers(string input)
 		{
-			List<int> numbersList = new List<int>();
-
 			var numbersStrings = Regex.Matches(input, @"-?\d+");
+			int[] numbers = ConvertToIntArray(numbersStrings);
+			CheckNegative(numbers);
+
+			return numbers;
+		}
+
+		private static int[] ConvertToIntArray(MatchCollection numbersStrings)
+		{
+			List<int> numbersList = new List<int>();
 
 			foreach (var item in numbersStrings)
 			{
 				numbersList.Add(Convert.ToInt32(item.ToString()));
 			}
 			int[] numbers = numbersList.ToArray();
-
-			CheckNegative(numbers);
 
 			return numbers;
 		}
