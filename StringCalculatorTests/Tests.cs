@@ -4,18 +4,32 @@ namespace StringCalculator
 {
 	public class Tests
 	{
+		StringCalculator stringCalculator;
+
 		[SetUp]
 		public void Setup()
 		{
+			stringCalculator = new StringCalculator();
 		}
 
 		[Test]
 		public void AddTest_EmptyString_ZeroExpected()
 		{
-			var stringCalculator = new StringCalculator();
 			int expected = 0;
+			string input = "";
 
-			int actual = stringCalculator.Add("");
+			int actual = stringCalculator.Add(input);
+
+			Assert.AreEqual(expected, actual);
+		}
+
+		[Test]
+		public void AddTest_OneNumber_ThisNUmber()
+		{
+			int expected = 1;
+			string input = "1";
+
+			int actual = stringCalculator.Add(input);
 
 			Assert.AreEqual(expected, actual);
 		}
