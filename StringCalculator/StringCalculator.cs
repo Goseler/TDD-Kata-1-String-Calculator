@@ -17,7 +17,7 @@ namespace StringCalculator
 				return sum;
 			}
 
-			string[] numbers = input.Split(',').ToArray();
+			string[] numbers = input.Split(',', '\n').ToArray();
 			foreach  (string number in numbers)
 			{
 				sum += Convert.ToInt32(number);

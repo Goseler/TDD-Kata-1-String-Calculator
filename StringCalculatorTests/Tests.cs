@@ -55,5 +55,16 @@ namespace StringCalculator
 
 			Assert.AreEqual(expected, actual);
 		}
+
+		[Test]
+		public void AddTest_LinesBetweenNumbers_SumNumbers()
+		{
+			int expected = 10;
+			string input = "1\n2\n3,4";
+
+			int actual = stringCalculator.Add(input);
+
+			Assert.AreEqual(expected, actual);
+		}
 	}
 }
