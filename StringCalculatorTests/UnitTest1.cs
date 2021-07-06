@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace StringCalculatorTests
+namespace StringCalculator
 {
 	public class Tests
 	{
@@ -10,9 +10,16 @@ namespace StringCalculatorTests
 		}
 
 		[Test]
-		public void Test1()
+		public void AddTest_EmptyString_ZeroExpected()
 		{
-			Assert.Pass();
+			var stringCalculator = new StringCalculator();
+			int expected = 0;
+
+			int actual = stringCalculator.Add("");
+
+			Assert.AreEqual(expected, actual);
+
+
 		}
 	}
 }
