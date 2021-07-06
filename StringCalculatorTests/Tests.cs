@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 
 namespace StringCalculator
 {
@@ -76,6 +77,15 @@ namespace StringCalculator
 			int actual = stringCalculator.Add(input);
 
 			Assert.AreEqual(expected, actual);
+		}
+
+		[Test]
+		public void AddTest_NegativeNumbers_ThrowException()
+		{
+			int expected = 3;
+			string input = "//;\n-1;2";
+
+			Assert.Throws<ArgumentException>(() => stringCalculator.Add(input));
 		}
 	}
 }
