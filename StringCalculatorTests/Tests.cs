@@ -86,5 +86,16 @@ namespace StringCalculator
 
 			Assert.Throws<ArgumentException>(() => stringCalculator.Add(input));
 		}
+
+		[Test]
+		public void AddTest_BiggerThan1000_ShouldBeIgnored()
+		{
+			int expected = 7;
+			string input = "//%2%1000%2067%5";
+
+			int actual = stringCalculator.Add(input);
+
+			Assert.AreEqual(expected, actual);
+		}
 	}
 }
